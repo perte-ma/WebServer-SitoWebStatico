@@ -3,13 +3,10 @@ import http.server
 import socketserver
 
 class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory="www", **kwargs)
-
     def do_GET(self):
         if self.path == '/':
             self.send_response(302)
-            self.send_header('Location', '/index.html')
+            self.send_header('Location', '/www/index.html')
             self.end_headers()
         else:
             super().do_GET()
